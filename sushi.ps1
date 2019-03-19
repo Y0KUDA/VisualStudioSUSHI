@@ -1,24 +1,10 @@
-﻿
-
-$Sushi=@(
-"🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-" 🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"  🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"   🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"    🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"     🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"      🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      "
-"       🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"        🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"          🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      "
-"           🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"            🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      ",
-"             🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣         🍣      "
-)
-$VSDTE = [Runtime.InteropServices.Marshal]::GetActiveObject("VisualStudio.DTE")
-$ctr=0
-while($True){
-$VSDTE.StatusBar.Text=[string]$Sushi[($ctr++)%14]
-Start-Sleep -Milliseconds 100
+$script:ctr=0;
+function sushiBar(){
+    $ret=" "*($script:ctr++%14)+("🍣"+" "*10)*30
+    return $ret
 }
+$dte = [Runtime.InteropServices.Marshal]::GetActiveObject("VisualStudio.DTE.15.0") #VS2017
+do{
+    $dte.StatusBar.Text=sushiBar
+    Start-Sleep -Milliseconds 100
+}while($True)
